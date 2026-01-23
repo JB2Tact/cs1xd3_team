@@ -19,7 +19,8 @@ header {
 
 #info {
     display:flex;
-    justify-content:space-between;
+    flex-direction:column;
+    gap:40px;
     margin-right:40px;
     margin-left:40px;
 }
@@ -29,18 +30,23 @@ section {
     color:#f1f8f3;
     background-color:#1C3A4B;
     border-radius:10px;
+    text-align:center;
 }
 
 section h2 {
     text-decoration:underline;
 }
 
+#container {
+    margin-bottom:40px;
+}
+
 footer {
-    position:fixed;
+    /* position:fixed;
     margin-top:auto;
     left:0;
     bottom:0;
-    width:100%;
+    width:100%; */
     text-align:center;
     background-color:#1C3A4B;
     color:#f1f8f3;
