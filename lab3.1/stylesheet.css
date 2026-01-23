@@ -2,6 +2,9 @@
     margin:0;
     padding:0;
 }
+#container {
+    height:100vh;
+}
 
 body {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -10,6 +13,7 @@ body {
 }
 
 header {
+    width:100%;
     text-align:center;
     color:#f1f8f3;
     background-color:#1C3A4B;
@@ -19,10 +23,15 @@ header {
 
 #info {
     display:flex;
-    flex-direction:column;
     gap:40px;
     margin-right:40px;
     margin-left:40px;
+}
+
+.text {
+    text-align:left;
+    margin-left:40px;
+    margin-top:20px;
 }
 
 section {
@@ -35,18 +44,15 @@ section {
 
 section h2 {
     text-decoration:underline;
+    margin-bottom:10px;
 }
 
-#container {
-    margin-bottom:40px;
+img {
+    border: 2px solid white;
 }
 
 footer {
-    /* position:fixed;
-    margin-top:auto;
-    left:0;
-    bottom:0;
-    width:100%; */
+    width:100%;
     text-align:center;
     background-color:#1C3A4B;
     color:#f1f8f3;
