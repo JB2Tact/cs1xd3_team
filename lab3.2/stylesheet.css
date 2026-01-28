@@ -2,23 +2,21 @@
     margin:0;
     padding:0;
 }
-#container {
-    height:100vh;
+#title{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 20px;
+    ;
+    color: #1C3A4B;
+    margin-bottom: 0;
+    text-decoration: underline;
+    margin-bottom:20px;
 }
 
 body {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color:#f1f8f3;
     color:#1C3A4B;
-}
-
-header {
-    width:100%;
-    text-align:center;
-    color:#f1f8f3;
-    background-color:#1C3A4B;
-    padding:40px;
-    margin-bottom:40px;
 }
 
 #info {
@@ -52,9 +50,13 @@ img {
 }
 
 footer {
-    width:100%;
-    text-align:center;
-    background-color:#1C3A4B;
-    color:#f1f8f3;
+    position: fixed;
+    margin-top: auto;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #1C3A4B;
+    color: white;
 
-   }
+}
