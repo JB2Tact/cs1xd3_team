@@ -138,11 +138,29 @@ footer {
 }
 
 #report {
+    
     color: #1C3A4B;
     margin-right: 20px;
     margin-left: 20px;
     margin-bottom: 100px;
 }
+
+#devplan {
+    text-align:center;
+    margin-top:0;
+}
+
+#devplan:hover {
+    scale:0.9;
+    cursor:pointer;
+    color:#162c38;
+}
+
+#plan {
+    text-decoration:none;
+    color:inherit;
+}
+
 
 .project {
     background-color: #1C3A4B;
