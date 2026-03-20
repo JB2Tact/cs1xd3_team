@@ -1,8 +1,8 @@
 <!doctype html>
 <!--
 Ayesha Hasan, Akil Kanwar, Anas Hayat, Udeshwar Sandhu
-Date: January 30, 2026
-User Interface design principles for lab 3.2
+Date: March 18, 2026
+DEVELOPMENT PLAN
 -->
 
 <html lang="en">
@@ -17,7 +17,597 @@ User Interface design principles for lab 3.2
 
     <h1 id="title">Development Plan</h1>
 
+    <!-- SECTION 1: NAMES -->
+    <h2>&#128101; 1. Team and Client Information</h2>
+    <section class="project">
+        <p class="text"><strong>Team Name:</strong> Cootes Coders</p>
+        <p class="text"><strong>Team Members:</strong> Ayesha Hasan, Akil Kanwar, Anas Hayat, Udeshwar Sandhu</p>
+        <p class="text"><strong>Client:</strong> Sohail Hasan (Driving Instructor)</p>
+        <p><strong>App Name:</strong> DriveSmart Driving School Web App </p>
+    </section>
+
+
+    <!-- SECTION 2: PURPOSE STATEMENT -->
+    <h2>&#127919; 2. Purpose</h2>
+    <section class="project">
+        <p class="text">
+            The <strong>DriveSmart web app</strong> is a <strong>prototype management system</strong> designed for a
+            driving school instructor.
+            Students can <strong>sign up, log in, view available lesson slots, and book lessons</strong>, while the
+            instructor can
+            <strong>manage availability</strong> and <strong>view upcoming lessons</strong> through a clear,
+            <strong>calendar-based interface</strong>.
+        </p>
+
+        <p class="text">
+            The purpose of this app is to <strong>simplify lesson scheduling</strong>,
+            <strong>reduce back-and-forth communication</strong>, and provide both students and the instructor with a
+            <strong>clear view of bookings</strong>. This directly addresses the client’s key needs
+            identified
+            in the initial report:
+        </p>
+
+        <ol>
+            <li><strong>Reducing manual scheduling</strong> via phone or email.</li>
+            <li><strong>Tracking instructor availability</strong> efficiently.</li>
+            <li><strong>Providing a simple, user-friendly booking experience</strong> for students.</li>
+        </ol>
+
+        <p class="last">
+            Our goal is to deliver a <strong>functional, realistic prototype</strong> that the client can
+            <strong>use or build upon</strong> in the future. The app emphasizes a <strong>clean, responsive
+                design</strong>
+            and a <strong>clear separation of roles</strong> between students and instructors to ensure usability and
+            scalability.
+        </p>
+    </section>
+
+
+
+    <!-- SECTION 3: DATA DESCRIPTION -->
+    <h2>&#128202; 3. Data Description</h2>
+    <section class="project">
+
+        <h3 style="text-decoration:underline">Users Table</h3>
+        <p><strong>Purpose:</strong> Stores login information and user roles (student or instructor).</p>
+
+        <table width="600">
+            <tr>
+                <th width="150">Field Name</th>
+                <th width="150">Type</th>
+                <th width="300">Additional Details</th>
+            </tr>
+            <tr>
+                <td>user_id</td>
+                <td>INT</td>
+                <td>Primary Key, Auto Increment</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>VARCHAR</td>
+                <td>Full Name</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>VARCHAR</td>
+                <td>Unique Email</td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>VARCHAR</td>
+                <td>Hashed Password</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td>VARCHAR</td>
+                <td>Optional</td>
+            </tr>
+            <tr>
+                <td>License Type</td>
+                <td>VARCHAR</td>
+                <td>Instructor/G1/G2/G</td>
+            </tr>
+            <tr>
+                <td>role</td>
+                <td>VARCHAR</td>
+                <td>User type ("student" or "instructor")</td>
+            </tr>
+            <tr>
+                <td>booking_count</td>
+                <td>INT</td>
+                <td>Number of bookings made (default = 0)</td>
+            </tr>
+
+        </table>
+
+        <br>
+
+        <h3 style="text-decoration:underline">Availability Table</h3>
+        <p><strong>Purpose:</strong> Stores instructor availability for lesson booking.</p>
+
+        <table width="600">
+            <tr>
+                <th width="150">Field Name</th>
+                <th width="150">Type</th>
+                <th width="300">Additional Details</th>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td>INT</td>
+                <td>Primary Key, Auto Increment</td>
+            </tr>
+            <tr>
+                <td>instructor_id</td>
+                <td>INT</td>
+                <td>Foreign Key</td>
+            </tr>
+            <tr>
+                <td>date</td>
+                <td>DATE</td>
+                <td>Stores a date (yyyy-mm-dd)</td>
+            </tr>
+            <tr>
+                <td>start_time</td>
+                <td>TIME</td>
+                <td>e.g. 08:00 (HH:MI:SS)</td>
+            </tr>
+            <tr>
+                <td>end_time</td>
+                <td>TIME</td>
+                <td>e.g. 17:00 (HH:MI:SS)</td>
+            </tr>
+            <tr>
+                <td>is_booked</td>
+                <td>BOOL</td>
+                <td>Default False</td>
+            </tr>
+        </table>
+
+        <br>
+
+        <h3 style="text-decoration:underline">Bookings Table</h3>
+        <p><strong>Purpose:</strong> Stores confirmed student bookings.</p>
+
+        <table width="600">
+            <tr>
+                <th width="150">Field Name</th>
+                <th width="150">Type</th>
+                <th width="300">Additional Details</th>
+            </tr>
+            <tr>
+                <td>ref_no</td>
+                <td>INT</td>
+                <td>Primary Key, Auto Increment</td>
+            </tr>
+            <tr>
+                <td>student_id</td>
+                <td>INT</td>
+                <td>Foreign Key</td>
+            </tr>
+            <tr>
+                <td>instructor_id</td>
+                <td>INT</td>
+                <td>Foreign Key</td>
+            </tr>
+            <tr>
+                <td>availability_id</td>
+                <td>INT</td>
+                <td>Foreign Key</td>
+            </tr>
+            <tr>
+                <td>booking_date</td>
+                <td>DATE</td>
+                <td>Lesson date (yyyy-mm-dd)</td>
+            </tr>
+            <tr>
+                <td>booking_time</td>
+                <td>TIME</td>
+                <td>Lesson Time (HH:MI:SS)</td>
+            </tr>
+            <tr>
+                <td>status</td>
+                <td>VARCHAR</td>
+                <td>i.e 'confirmed','cancelled', 'cancel_requested' (Booking status)</td>
+            </tr>
+        </table>
+    </section>
+
+
+    <!-- SECTION 4: FUNCTIONALITIES -->
+    <h2>&#129513; 4. Functionality Overview</h2>
+
+    <section class="project">
+        <h3 style="text-decoration:underline">4.0 Landing Page Overview</h3>
+        <p class="text">
+            Before accessing any interactive features, users first arrive at the public landing page.
+            This page contains only static information and serves as the home screen for the driving school instructor.
+            It introduces the business and provides essential details that any visitor can view without logging in.
+        </p>
+
+        <p>The landing page includes the following static sections:</p>
+        <ul>
+            <li>About the Instructor / Driving School</li>
+            <li>Contact Information (phone, email, location)</li>
+            <li>Lesson Packages and Pricing</li>
+            <li>Frequently Asked Questions (FAQs)</li>
+            <li>Student Reviews or Testimonials</li>
+        </ul>
+
+        <p class="last">
+            A consistent navigation bar appears at the top of the landing page. It includes links to the
+            static sections as well as a <strong>Login / Signup</strong> button. This button
+            redirects users to the authentication system, where they can create an account or log in to
+            access the student or instructor dashboards.
+        </p>
+    </section>
+
+    <section class="project">
+
+        <h3 style="text-decoration:underline">4.1 Authentication (Student & Instructor Login and Signup)</h3>
+        <p class="text">
+            The authentication system allows both students and the instructor to create accounts, log in,
+            and access role-specific dashboards.
+        </p>
+
+        <ul>
+            <li class="text">
+                <strong>Signup (Student & Instructor):</strong>
+                <ul>
+                    <li><strong>Front-end Presentation Tier (HTML/CSS/JavaScript):</strong><br>
+                        A signup form collects name, email, password, role, etc.
+                        JavaScript validates required fields (e.g., non-empty, valid email format,
+                        password length) and provides feedback.
+                    </li>
+                    <li><strong>Back-end Logic and Data Tier (PHP + SQL):</strong><br>
+                        PHP receives the form data, validates it again on the server, hashes the password,
+                        and performs an <strong>INSERT</strong> into the users table. If the email already exists, PHP
+                        returns an
+                        error message to the user.
+                    </li>
+                </ul>
+            </li>
+            <li class="text">
+                <strong>Login (Student & Instructor):</strong>
+                <ul>
+                    <li><strong>Front-end Presentation Tier (HTML/CSS/JavaScript):</strong><br>
+                        A login form collects email and password. JavaScript can provide basic checks
+                        (e.g., fields not empty) and show feedback if the user submits an empty form.
+                    </li>
+                    <li><strong>Back-end Logic and Data Tier (PHP + SQL):</strong><br>
+                        PHP uses a <strong>SELECT</strong> query on the users table to find
+                        the user by email, verifies the password against the stored hash, and starts a
+                        session if valid. Based on the role, PHP redirects to either the student dashboard
+                        or the instructor dashboard.
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <strong class="text">Logout:</strong>
+                <ul>
+                    <li><strong>Back-end Logic and Data Tier (PHP + SQL):</strong><br>
+                        A logout link or button triggers a PHP script that destroys the session and
+                        redirects the user back to the landing or login page. No database changes are
+                        required for logout.
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </section>
+
+    <section class="project">
+        <h3 style="text-decoration:underline">4.2 Calendar (Viewing Instructor Availability)</h3>
+        <p class="text">
+            The calendar functionality allows students to see when the instructor is available for lessons.
+            It reads from the availability data and presents it in a clear, date-based view.
+        </p>
+
+        <ul>
+            <li class="text">
+                <strong>Display Available Time Slots:</strong>
+                <ul>
+                    <li class="text"><strong>Front-end Presentation Tier (HTML/CSS/JavaScript):</strong><br>
+                        The calendar or list view is built using HTML elements (e.g., a grid or table for dates
+                        and time slots). CSS is used to add styling and visually distinguish available slots (e.g.,
+                        green) from
+                        booked or unavailable ones.
+
+                    <li><strong>Back-end Logic and Data Tier (PHP + SQL):</strong><br>
+                        PHP runs a <strong>SELECT</strong> query on the availability table to
+                        retrieve all slots where 'is_booked = FALSE'. These results are passed to
+                        the front-end and rendered as clickable time slots.
+                    </li>
+
+                    <p class="last"><i>An alternative approach is using a date input field that allows
+                            users to select a specific day. PHP then retrieves the corresponding time slots from the
+                            database and displays them as interactive
+                            buttons. Available slots remain clickable, while booked slots are disabled and styled
+                            differently using CSS.
+                        </i></p>
+                </ul>
+            </li>
+
+            <li>
+                <strong>Click-to-Book Integration:</strong>
+                <p class="text"> When a student clicks on an available time slot, the system captures the selected
+                    date and time. The user is then taken to a booking form page where these details
+                    are already filled in.</p>
+            </li>
+
+            <li>
+                <strong>Instructor Availability Management:</strong>
+                <ul>
+                    <li class="text"><strong>Front-end Presentation Tier (HTML/CSS/JavaScript):</strong><br>
+                        On the instructor view, there is a form to add new availability slots (date, start time,
+                        end time, etc.) Existing slots are listed with buttons to remove them. JavaScript can be used
+                        to confirm deletions or for validation.
+                    </li>
+                    <li><strong>Back-end Logic and Data Tier (PHP + SQL):</strong><br>
+                        Adding a slot uses an <strong>INSERT</strong> into the availability table.
+                        Removing or editing a slot uses a <strong>DELETE</strong> or an <strong>UPDATE</strong>.
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+
+    </section>
+
+    <section class="project">
+        <h3 style="text-decoration:underline">4.3 Booking (Student Lesson Booking)</h3>
+        <p>
+            The booking functionality allows a logged-in student to confirm a lesson for a specific date and time.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Booking Form:</strong>
+                <ul>
+                    <li class="text"><strong>Front-end Presentation Tier (HTML/CSS/JavaScript):</strong><br>
+                        The booking form includes fields for Name, Email, Phone Number, date, time (or a selected slot),
+                        and possibly
+                        additional notes. If the student comes from the calendar view, the date and time can be
+                        pre-filled. JavaScript validates that a slot is selected and provides feedback if
+                        required fields are missing (prevents default when submit button is pressed for invalid/missing
+                        data).
+                    </li>
+                    <li class="text"><strong>Back-end Logic and Data Tier (PHP + SQL):</strong><br>
+                        PHP receives the booking request and checks the selected slot in the
+                        availability table using a <strong>SELECT</strong> query to confirm that
+                        'is_booked = FALSE'. If the slot is still free:
+                        <ul>
+                            <li>PHP performs an <strong>INSERT</strong> into the bookings table
+                            </li>
+                            <li>PHP then performs an <strong>UPDATE</strong> on the availability table
+                                to set 'is_booked = TRUE' for that slot.</li>
+                        </ul>
+                        If the slot is no longer available, PHP returns an error message and the front-end
+                        displays a warning to the student.
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <strong>Booking Confirmation & Feedback:</strong>
+                <ul>
+                    <li class="text"><strong>Front-end Presentation Tier (HTML/CSS/JavaScript):</strong><br>
+                        After a successful booking, the student sees a confirmation message (e.g., “Your lesson
+                        on [date] at [time] has been booked”).
+                    </li>
+                    <li><strong>Back-end Logic and Data Tier (PHP):</strong><br>
+                        After inserting the booking, PHP can redirect the student to their dashboard
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section class="project">
+        <h3 style="text-decoration:underline">4.4 Dashboards (Student & Instructor Views)</h3>
+        <p class="text">
+            The dashboards provide a role-specific overview and summary. Students see their upcoming lessons and
+            progress (total hours driven, etc.),
+            while the instructor sees their schedule and availability.
+        </p>
+
+        <ul>
+            <li>
+                <strong>Student Dashboard:</strong>
+                <ul>
+                    <li class="text"><strong>Front-end Presentation Tier (HTML/CSS/JavaScript):</strong><br>
+                        The student dashboard displays a list or table of upcoming lessons.
+                        It may also show a summary such as “Total Hours Driven”. CSS is used
+                        to create a clean, card-based or table layout. Each booking includes a <strong>“Request Cancellation” 
+                            button</strong>, allowing students to request that a booking be cancelled. 
+                        JavaScript can be used to display a confirmation message before sending the request.
+                    </li>
+                    <li class="text"><strong>Back-end Logic and Data Tier (PHP):</strong><br>
+                        PHP uses a <strong>SELECT</strong> query on the bookings table to retrieve all upcoming
+                        bookings for the logged-in student. PHP calculates any summary data (e.g., total hours)
+                        and passes it to the dashboard template. When a student requests a cancellation, PHP processes the request using 
+                        the booking ID and performs an <strong>UPDATE</strong> on the bookings table, changing 
+                        the status from 'confirmed' to 'cancel_requested'. The booking is not immediately removed from the system.
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <strong>Instructor Dashboard:</strong>
+                <ul>
+                    <li class="text">
+                        <strong>Front-end Presentation Tier (HTML/CSS/JavaScript):</strong><br>
+                        The instructor dashboard shows “Today’s Lessons” and “Upcoming Lessons” in a list or table.
+                        Each entry includes details such as student name, date, and time, with CSS used to create a
+                        clean
+                        and easy-to-read layout.
+
+                        In addition, the dashboard displays all <strong>availability slots</strong>. Each slot
+                        includes a
+                        <strong>delete button</strong>, allowing the instructor to remove availability. A simple form is
+                        also provided
+                        to <strong>add new availability slots</strong> by entering a date and time. JavaScript can be
+                        used to confirm
+                        deletion actions. The instructor dashboard also includes a section for <strong>“Cancellation Requests”</strong>,
+                         which displays all bookings where the status is 'cancel_requested'. Each request includes an 
+                         <strong>Approve</strong> button.
+                    </li>
+
+                    <li>
+                        <strong>Back-end Logic and Data Tier (PHP):</strong><br>
+                        PHP uses <strong>SELECT</strong> queries on the bookings table (and also users and
+                        availability tables)
+                        to retrieve all bookings for the instructor. Queries can filter by date to separate today’s
+                        lessons
+                        from future ones.
+
+                        When the instructor adds an availability, PHP processes the
+                        data
+                        and performs an <strong>INSERT</strong> into the availability table. When a delete button is
+                        clicked,
+                        PHP processes the request using the slot ID and performs a <strong>DELETE</strong> query to
+                        remove
+                        the selected availability slot from the database.
+                        PHP uses a <strong>SELECT</strong> query to retrieve all bookings where status = 'cancel_requested'. 
+                        When the instructor clicks approve, PHP performs an <strong>UPDATE</strong> on the bookings table to 
+                        change the status to 'cancelled', and updates the corresponding availability slot to set 'is_booked = FALSE', 
+                        making it available again.
+                    </li>
+                </ul>
+        </ul>
+        </li>
+        </section>
         
+
+        <section class="project">
+            <h3 style="text-decoration:underline">Navigation</h3> 
+
+            <p>The application includes a simple navigation bar to allow users to move between key sections of the system.
+        The navigation bar contains links to the <strong>Calendar</strong>, and 
+        <strong>Logout</strong> pages.</p>
+        </section>
+
+
+        <!-- SECTION 5: TEAM ROLES -->
+    <h2>&#128188; 5. Roles of Team Members</h2>
+    <section class="project">
+        <ul>
+            <li><strong>Akil:</strong> Authentication/login/signup</li>
+            <li><strong>Ayesha:</strong> Booking Form</li>
+            <li><strong>Anas:</strong> Calendar/availability</li>
+            <li><strong>Udeshwar:</strong> Dashboard</li>
+        </ul>
+    </section>
+
+    <!-- SECTION 6: WIREFRAMES -->
+    <h2>&#128187; 6. Wireframes</h2>
+<section class="project">
+  <div style="display: flex; justify-content: space-evenly; align-items:center; gap: 20px; flex-wrap: wrap;">
+    
+    <img src="../images/splash1.png" style="width: 60%; height: auto;">
+    
+    <img src="../images/splash2.png" style="width: 20%; height: auto;">
+    
+  </div>
+<br><br>
+  <div style="display: flex; justify-content: space-evenly; align-items:center; gap: 20px; flex-wrap: wrap;">
+    
+    <img src="../images/login1.png" style="width: 60%; height: auto;">
+    
+    <img src="../images/login2.png" style="width: 20%; height: auto;">
+    
+  </div>
+  <br><br>
+  <div style="display: flex; justify-content: space-evenly; align-items:center; gap: 20px; flex-wrap: wrap;">
+    
+    <img src="../images/user1.png" style="width: 60%; height: auto;">
+    
+    <img src="../images/user2.png" style="width: 20%; height: auto;">
+    
+  </div>
+  <br><br>
+  <div style="display: flex; justify-content: space-evenly; align-items:center; gap: 20px; flex-wrap: wrap;">
+    
+    <img src="../images/instructor1.png" style="width: 60%; height: auto;">
+    
+    <img src="../images/instructor2.png" style="width: 20%; height: auto;">
+    
+  </div>
+  <br><br>
+  <div style="display: flex; justify-content: space-evenly; align-items:center; gap: 20px; flex-wrap: wrap;">
+    
+    <img src="../images/cal1.png" style="width: 60%; height: auto;">
+    
+    <img src="../images/cal2.png" style="width: 20%; height: auto;">
+    
+  </div>
+  <br><br>
+  <div style="display: flex; justify-content: space-evenly; align-items:center; gap: 20px; flex-wrap: wrap;">
+    
+    <img src="../images/book1.png" style="width: 60%; height: auto;">
+    
+    <img src="../images/book2.png" style="width: 20%; height: auto;">
+    
+  </div>
+</section>
+
+
+    <!-- SECTION 7: INCREMENTS -->
+    <h2>&#128200; 7. Incremental Delivery Plan</h2>
+    <section class="project">
+    <p class="text">
+        For our first increment, our goal is to establish the foundational structure of the web app. 
+        This includes setting up the required database tables, completing the general static layout 
+        of the landing page, and implementing small but functional prototypes from each team member. 
+        These prototypes represent early versions of the core features that will be expanded in later 
+        increments. 
+    </p>
+
+    <p>
+        The following deliverables will be completed by each team member for Increment 1:
+    </p>
+
+    <ul>
+        <li><strong>Akil:</strong> Working login and signup forms that successfully create a user and start a session.</li>
+        <li><strong>Ayesha:</strong> A basic booking form that submits a lesson booking into the database.</li>
+        <li><strong>Anas:</strong> A simple availability page that displays time slots from the database.</li>
+        <li><strong>Udeshwar:</strong> Basic instructor form to add availability slots in dashboard.</li>
+    </ul>
+</section>
+
+<!-- SECTION 8: CLIENT FEEDBACK -->
+<h2>&#128110; 8. Client Feedback</h2>
+<section class="project">
+    <p>
+        The client highlighted the importance of maintaining control over lesson bookings. They explained that
+        <i>“students shouldn’t be able to cancel or delete lessons on their own without approval,”</i> which led to the
+        decision to restrict direct cancellation. Instead, students must now request changes, which are reviewed
+        and approved by the instructor.
+    </p>
+<br><br>
+    <p>
+        The client also suggested improving user tracking within the system. They mentioned that <i> “it would be helpful
+        to quickly see which students are new and which ones have booked before,”</i> which resulted in adding a
+        'booking_count' field to the users table. This value starts at 0 and increases each time a user
+        makes a booking, allowing the system to identify first-time users.
+    </p>
+<br><br>
+    <p>
+        In terms of design, the client preferred a more structured and visually clear layout. They noted that
+        <i>“using tables instead of long lists would make the information much easier to read,”</i> so the interface
+        should make use of visually apealling and clear table-based layouts for displaying bookings and user data in a more organized and
+        user-friendly way.
+    </p>
+
+</section>
+
+
+
+    
+
+   
+
+
 
     <footer>
         <p>&#169; 2026 compsci 1xd3 </p>

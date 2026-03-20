@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing:border-box;
 }
 
 #title {
@@ -18,10 +19,49 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f1f8f3;
     color: #1C3A4B;
+    
+}
+
+h2 {
+    margin:20px;
+    margin-bottom:0;
+}
+
+.project {
+    margin:20px;
+    margin-top:5px;
+    background-color: #1C3A4B;
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 18px;
+}
+
+ol, ul {
+  padding-left: 40px;
+  margin-left: 0;
+}
+
+.text {
+    margin-bottom:10px;
+}
+
+.last {
+    margin-top:10px;
+}
+
+table, th, td {
+    border: 1px solid white;
+    padding:2px;
+    text-align:center;
+}
+
+table {
+    margin:auto;
 }
 
 footer {
-    position: fixed;
+    /* position: fixed; */
     margin-top: auto;
     left: 0;
     bottom: 0;
